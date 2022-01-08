@@ -1,0 +1,3 @@
+from markets.cryptocurrency.fngindex import CryptoFearAndGreedIndex
+
+CryptoFearAndGreedIndex._test_me()
