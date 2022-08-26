@@ -128,6 +128,14 @@ class CryptoFearAndGreedIndex:  # CFG
         # Horizontal lines for Extreme-Fear and Extreme-Greed sentiments
         ax.axhline(y=25, linewidth=2, color='green', linestyle="--")
         ax.axhline(y=75, linewidth=2, color='red', linestyle="--")
+        ax.axhline(
+            y=self.Y[-1],
+            linewidth=2,
+            color='orange',
+            linestyle=":"
+        )
+        ax.plot(self.X[-1], self.Y[-1], marker="o", markersize=5,
+                markeredgecolor="k", markerfacecolor="orange")
 
         logger.debug(f"limit={self.limit}:")  #DEBUG
         logger.debug(f"from {self.X[0]} to {self.X[-1]}")
@@ -160,7 +168,7 @@ class CryptoFearAndGreedIndex:  # CFG
             return 0
 
         elif token == "file":
-            pass 
+            pass
         
 
 if __name__ == "__main__":
