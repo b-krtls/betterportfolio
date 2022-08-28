@@ -17,8 +17,8 @@ logger.addHandler(logging.StreamHandler())
 class PriceHistory:
     def __init__(self, source:str) -> None:
         self.price_data:pd.DataFrame = None
-        self.metadata:dict = None
-        self.source = source
+        self.metadata:dict = None  # Like when retrieved, time-scale
+        self.source = source  # Maybe, from which connection
 
     def retrieve(self):
         pass
@@ -27,6 +27,8 @@ class PriceHistory:
     def plotter(self):
         # TODO::
         pass
+
+    def convert_time_scale(self)
 
 
 
