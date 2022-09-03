@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import requests
 
 from src.auxiliary.price import PriceHistory
-from src.auxiliary.connection import _SimpleConnection
+from connection import _SimpleConnection
 
 logger = logging.getLogger("Binance")
 logger.setLevel("CRITICAL") #DEBUG

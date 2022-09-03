@@ -20,15 +20,16 @@ class PriceHistory:
         self.metadata:dict = None  # Like when retrieved, time-scale
         self.source = source  # Maybe, from which connection
 
-    def retrieve(self):
-        pass
-        return
+    # def retrieve(self):
+    #     pass
+    #     return
 
     def plotter(self):
         # TODO::
         pass
 
-    def convert_time_scale(self)
+    def convert_time_scale(self):
+        pass
 
 
 

@@ -30,7 +30,7 @@ class CryptoFearAndGreedIndex:  # CFG
         intended way(s), or if it is not deliberately overriden
     """
     def __init__(self, limit, source="api", override=False) -> None:
-        assert override == True
+        assert override == override
         self.limit = limit
         self.source = source  # "api" or "file"
         self.nullval = NotImplemented # Default value to be set at mid-range [0,100]
