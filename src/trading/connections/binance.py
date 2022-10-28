@@ -7,13 +7,15 @@ cryptocurrencies price data.
 # import json
 import logging  # Be sure that this does not have security issues
 from urllib.parse import urljoin
+from datetime import datetime
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.dates import  DateFormatter
 import requests
 
-from src.auxiliary.price import PriceHistory
+# from src.auxiliary.price import PriceHistory
 from connection import _SimpleConnection
 
 logger = logging.getLogger("Binance")
@@ -26,64 +28,81 @@ class BinanceConnection():
     """
 
     bases = [
-        r"https://api{}.binance.com".format(i) for i in [None, 1, 2, 3]
+        r"https://api{}.binance.com".format(i) for i in ['', 1, 2, 3]
     ]
-    # :TODO: If retrieval fails, test others, api1-2-3
+
+    endpoints = {
+        "ping": r"/api/v3/ping",
+        "avgPrice": r"/api/v3/avgPrice",
+        "klines": r"/api/v3/klines",
+    }
 
     # :NOTE: 
     # All endpoints return either a JSON object or array.
     # Data is returned in ascending order. Oldest first, newest last.
 
-    def __init__(self):
-        self.base_url:str = None
+    def __init__(self, success_status_code=200):
+        self.base_url:str = self.bases[0]
         self.metadata = None
-        self.connection:_SimpleConnection = None
-        self.get_url = lambda endpoint_: urljoin(self.base_url, endpoint_) 
-        self._check_connection()
+        self.get_url = lambda endpoint_: urljoin(self.base_url, endpoint_)
+        self.success_status_code = success_status_code
+        # self.connection:_SimpleConnection = None
+        # self.check_connection()
 
-    def _check_connection(self):
-        endpoint = "/api/v3/ping"
+    # def get_url(self, endpoint_):
+    #     return urljoin(self.base_url, endpoint_)
+
+    def check_connection(self, success_status_code=200):
+        """
+        Check connection to Possible Binance Base URLs
+        """
+        endpoint = self.endpoints["ping"]  # r"/api/v3/ping"
 
         for base_url in self.bases:
             connection = _SimpleConnection(
-                base_url, 
-                endpoint, 
-                success_status_code=200
+                base_url,
+                endpoint,
             )
+            connection.establish(method="get")
 
             response = connection.response
-            if response.json() == {}:
-                self.base_url = base_url
-                self.connection = connection
-                logger.debug("API Base URL = {}".format(base_url))
-                return
-        
-        logger.warning(
-            "Binance Connection cannot be established, Error Code: {}".\
-                format(response.status_code)
-        )
-        return
+            if response.status_code ==  success_status_code: 
+                if response.json() == {}:
+                    self.base_url = base_url
+                    # self.connection = connection
+                    logger.info("Binance API Base URL = {}".format(base_url))
+                    break
+        else:
+            logger.info(
+                "Binance Connection cannot be established, Error Code: {}".\
+                    format(response.status_code)
+            )
+
+        is_successful = (response.status_code == success_status_code)
+        return is_successful
     
     def get_average_price(self, symbol:str="BTCUSDT"):
-        endpoint = r"/api/v3/avgPrice"
+        endpoint = self.endpoints["avgPrice"]  # r"/api/v3/avgPrice"
         url = self.get_url(endpoint)
         
         response = requests.get(url, params={"symbol":symbol})
         
-        return response
+        return response.json()["price"]
 
-
-    def __get_kline(
+    def get_kline(
             self, 
             symbol:str="BTCUSDT",
-            interval:str="1D",
+            interval:str="1d",
             start_time=None,
             end_time=None,
             limit=500
         ):
+
         # :TODO: explain what the parameters are
         # https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-data
 
+        # :TODO: handle start and end time correctly
+        
         # [
         #   [
         #     1499040000000,      // Kline open time
@@ -101,7 +120,7 @@ class BinanceConnection():
         #   ]
         # ]
 
-        endpoint = "/api/v3/klines"
+        endpoint = self.endpoints["klines"]  # "/api/v3/klines"
         url = self.get_url(endpoint)
 
         response = requests.get(
@@ -109,14 +128,18 @@ class BinanceConnection():
             params={
                 "symbol":symbol,
                 "interval":interval,
-                "startTime": start_time,
-                "endTime": end_time,
+                # "startTime": start_time,
+                # "endTime": end_time,
                 "limit": limit
                 },
             )
-        
+
         if response.status_code != 200:
-            logging.warning("Klines / Candlestick data cannot be retrieved")
+            logging.info("Klines / Candlestick data cannot be retrieved")
+            logging.debug(
+                "Response status code = {}".format(response.status_code)
+            )
+            print(url, response.status_code)
             return
 
         price_data = pd.DataFrame(
@@ -138,6 +161,36 @@ class BinanceConnection():
             dtype=np.float32
         )
 
-        plt.plot(price_data["Kline open time"], price_data["Close price"])
+        price_data["Kline open time"] = pd.to_datetime(
+            price_data["Kline open time"], unit='ms', origin='unix'
+        )
+        price_data["Kline close time"] = pd.to_datetime(
+            price_data["Kline close time"], unit='ms', origin='unix'
+        )
+        
+        fig = plt.figure()
+        ax = plt.axes()
+        ax.plot(
+            price_data["Kline open time"],
+            price_data["Close price"]
+        )
+
+        ax.set_title("Kline ")
+        myFmt = DateFormatter(r"%Y-%m-%d")
+        ax.xaxis.set_major_formatter(myFmt)
+        for label in ax.get_xticklabels():
+            label.set_rotation(45)
+            label.set_horizontalalignment("center")
+        ax.grid(linestyle=':')
+
         plt.draw()
         plt.show(block=True)
+
+        return price_data, ax
+
+if __name__ == "__main__":
+    bc = BinanceConnection()
+    bc.check_connection()
+    print(bc.base_url)
+    print(bc.get_average_price())
+    bc.get_kline()

@@ -23,38 +23,66 @@ class _SimpleConnection:
     Abstraction of a Simple Connection to an endpoint
     """
 
-    def __init__(self, base_url, endpoint, success_status_code):
+    def __init__(self, base_url:str, endpoint:str=''):
         self.name:str = "SimpleConnection"
         self.base_url:str = base_url
         self.endpoint:str = endpoint
         self.status:bool = False 
         self.response:requests.Response = None
         self.metadata = None
+        self.method = None
+        self.parse_url = lambda endpoint_: urljoin(self.base_url, endpoint_)
 
-        self.connect(endpoint, success_status_code)
-
-
-    def connect(self, endpoint:str, success_status_code:int=200):
+    def establish(self,
+                  method:str="get",
+                  kwargs=dict(),
+                  success_status_code:int=200):
         """
         Establish a connection to an endpoint
 
-        :param endpoint: Endpoint to be connected
-        :type endpoint: str
-        :param success_status_code: The status code of a potential
-            successful connection
-        :type success_status_code: int
+        :param method: _description_, defaults to "get"
+        :type method: str, optional
+        :param kwargs: Arguments to requests Methods, defaults to dict()
+        :type kwargs: dict, optional
+        :param success_status_code: The status code of a potential\
+            successful connection, defaults to 200
+        :type success_status_code: int, optional
+        :raises ValueError: If the declared request method is NOT allowed 
         :return: Response of the request
         :rtype: requests.Response
         """
+  
+        self.method = method.casefold()
 
-        # Determine if base endpoint is available for connection
-        response = requests.get(urljoin(self.base_url, endpoint))
-        self.response = response
+        # Checking for correct arguments
+        allowed_methods = ["get", "post"]
+        if method not in allowed_methods:
+            raise ValueError(f"Connection Method is not allowed: {method}")
+
+        # Establish Connection
+        if method == "get":
+            response = requests.get(
+                urljoin(self.base_url, self.endpoint), **kwargs
+            )
+        elif method == "post":
+            response = requests.post(
+                urljoin(self.base_url, self.endpoint), **kwargs
+            )
 
         if response.status_code == success_status_code:
             self.status = True
         else:
             logger.warning(
-                "{} cannot be established".format(__class__.__name__)
+                "Connection cannot be established successfully: {} - "\
+                "Response Status Code = {}\n"\
+                "Successful Connection Status Code should be {}"\
+                    .format(__class__.__name__, 
+                            response.status_code, 
+                            success_status_code)
             )
+
+        self.response = response
         return response
+
+    # def __repr__(self) -> str:
+    #     pass
