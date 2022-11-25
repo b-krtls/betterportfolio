@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1107</width>
-    <height>659</height>
+    <width>1174</width>
+    <height>779</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,16 +21,16 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
       </property>
       <property name="documentMode">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="tabsClosable">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -43,10 +43,169 @@
         <string>Analysis</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
+        <item row="2" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+               <widget class="QLabel" name="timePeriod_label">
+                <property name="text">
+                 <string>Time Period</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::NoTextInteraction</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+               <widget class="QLabel" name="candleType_Label">
+                <property name="text">
+                 <string>Candle Type</string>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::NoTextInteraction</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QComboBox" name="comboBox">
+                <property name="mouseTracking">
+                 <bool>false</bool>
+                </property>
+                <property name="contextMenuPolicy">
+                 <enum>Qt::NoContextMenu</enum>
+                </property>
+                <property name="acceptDrops">
+                 <bool>true</bool>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>15m</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>30m</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>45m</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>2h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>3h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>4h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>6h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>8h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>12h</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1D</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1W</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>2W</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1M</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="comboBox_2">
+                <item>
+                 <property name="text">
+                  <string>Bars</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Candles</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Line</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Open-Close Only</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Heikin-Ashi</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGraphicsView" name="graphicsView_2"/>
+          </item>
+          <item>
+           <widget class="QGraphicsView" name="graphicsView"/>
+          </item>
+         </layout>
+        </item>
         <item row="0" column="1">
          <widget class="QPushButton" name="pushButton">
           <property name="text">
-           <string>Update / Re-plot</string>
+           <string>Force Update / Re-plot</string>
           </property>
          </widget>
         </item>
@@ -56,97 +215,14 @@
            <string>Properties</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="2" column="0">
-            <widget class="QGroupBox" name="indicators_checkbox">
-             <property name="title">
-              <string>Indices and Indicators</string>
+           <item row="3" column="0">
+            <widget class="Line" name="line">
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
-              <item>
-               <widget class="QCheckBox" name="checkBox_6">
-                <property name="text">
-                 <string>Volume</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox">
-                <property name="text">
-                 <string>RSI : Relative Strength Index</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_4">
-                <property name="text">
-                 <string>MACD : Moving Average Convergence - Divergence</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_3">
-                <property name="text">
-                 <string>Stoch. RSI : Stochasctic Relative Strength Index</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_2">
-                <property name="text">
-                 <string>SuperTrend</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_7">
-                <property name="text">
-                 <string>WaveTrend</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_5">
-                <property name="text">
-                 <string>ATR : Average True Range</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox">
-                <property name="text">
-                 <string>Simple Moving Average</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_2">
-                <property name="text">
-                 <string>Exponential Moving Average</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_3">
-                <property name="text">
-                 <string>Volume Weighted Moving Average</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_8">
-                <property name="text">
-                 <string>ATR Band</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBox_9">
-                <property name="text">
-                 <string>Bollinger Band</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
             </widget>
            </item>
            <item row="1" column="0">
@@ -155,14 +231,14 @@
               <string>Asset Settings</string>
              </property>
              <layout class="QFormLayout" name="formLayout">
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="market_label">
                 <property name="text">
                  <string>Market:</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="1" column="1">
                <widget class="QComboBox" name="market_comboBox">
                 <property name="currentText">
                  <string>Crypto-currency</string>
@@ -204,55 +280,136 @@
                 </item>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="trading_pair_label">
                 <property name="text">
                  <string>Trading Pair:</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="3" column="1">
                <widget class="QComboBox" name="trading_pair_comboBox"/>
               </item>
              </layout>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="fetch_pushButton">
-             <property name="text">
-              <string>Fetch Data</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QGroupBox" name="groupBox">
+           <item row="4" column="0">
+            <widget class="QGroupBox" name="indicators_checkbox">
              <property name="title">
-              <string>Currently Active:</string>
+              <string>Indicators</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_6">
-              <item row="0" column="1">
-               <widget class="QPushButton" name="pushButton_3">
-                <property name="text">
-                 <string>Modify</string>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QFrame" name="frame_2">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_4">
+                   <property name="text">
+                    <string>Add</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QListWidget" name="listWidget_5">
+                   <item>
+                    <property name="text">
+                     <string>ATR : Average True Range</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>ATR Bands</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Bollinger Bands</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>EMA: Exponential Moving Average</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>MA : Simple Moving Average</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>MACD : Moving Average Convergence - Divergence</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>RSI : Relative Strength Index</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Stoch. RSI : Stochastic Relative Strength Index</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>SuperTrend</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>VWAP : Volume-weighted Average Price</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Volume</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>WaveTrend</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
-              <item row="0" column="2">
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="text">
-                 <string>Remove</string>
+              <item>
+               <widget class="QFrame" name="frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QPushButton" name="pushButton_4">
-                <property name="text">
-                 <string>Add</string>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
                 </property>
+                <layout class="QGridLayout" name="gridLayout_6">
+                 <item row="1" column="0" colspan="2">
+                  <widget class="QListWidget" name="listWidget"/>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QPushButton" name="pushButton_3">
+                   <property name="text">
+                    <string>Modify</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="text">
+                    <string>Remove</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
-              </item>
-              <item row="1" column="0" colspan="3">
-               <widget class="QListWidget" name="listWidget"/>
               </item>
              </layout>
             </widget>
@@ -260,56 +417,19 @@
           </layout>
          </widget>
         </item>
-        <item row="2" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <layout class="QGridLayout" name="gridLayout_7">
-              <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-               <widget class="QLabel" name="timePeriod_label">
-                <property name="text">
-                 <string>Time Period</string>
-                </property>
-                <property name="textFormat">
-                 <enum>Qt::AutoText</enum>
-                </property>
-                <property name="textInteractionFlags">
-                 <set>Qt::NoTextInteraction</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-               <widget class="QLabel" name="candleType_Label">
-                <property name="text">
-                 <string>Candle Type</string>
-                </property>
-                <property name="textInteractionFlags">
-                 <set>Qt::NoTextInteraction</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QComboBox" name="comboBox">
-                <property name="contextMenuPolicy">
-                 <enum>Qt::DefaultContextMenu</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QComboBox" name="comboBox_2"/>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QGraphicsView" name="graphicsView_2"/>
-          </item>
-          <item>
-           <widget class="QGraphicsView" name="graphicsView"/>
-          </item>
-         </layout>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="fetch_pushButton">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Fetch Data</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -317,13 +437,301 @@
        <attribute name="title">
         <string>Portfolio</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_4"/>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="1" rowspan="3">
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>853</width>
+             <height>653</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Portfolio: Asset Allocation (#)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tableWidget">
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustIgnored</enum>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <column>
+               <property name="text">
+                <string>Asset</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>New Column</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Quantity/Amount</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Current Price</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Allocation</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Value in Ref.Asset</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Compostion - Across Different Markets and Assets</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGraphicsView" name="graphicsView_4"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>Portfolio: Total Value in Ref. Asset - History</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGraphicsView" name="graphicsView_3"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QFrame" name="frame_3">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Reference Asset Type:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Total Value in Ref. Asset = </string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboBox_4">
+             <item>
+              <property name="text">
+               <string>USD</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>XAU</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>XDR</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CHF</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>JPY</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CNY</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>PnL =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="global_data">
        <attribute name="title">
         <string>Global Data</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_5"/>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Country:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <layout class="QFormLayout" name="formLayout_3">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="checkBox_2">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBox_3">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QCheckBox" name="checkBox_4">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBox_5">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QCheckBox" name="checkBox_6">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="comboBox_3">
+            <item>
+             <property name="text">
+              <string>US</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Turkiye</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="trading">
+       <property name="accessibleName">
+        <string/>
+       </property>
+       <attribute name="title">
+        <string>Trading</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="reminders">
+       <attribute name="title">
+        <string>Reminders</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QLabel" name="trading_pair_label_2">
+          <property name="text">
+           <string>Trading Pair:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="trading_pair_comboBox_2"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="news">
+       <attribute name="title">
+        <string>News</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="memes">
+       <attribute name="title">
+        <string>Memes</string>
+       </attribute>
       </widget>
      </widget>
     </item>
@@ -334,7 +742,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1107</width>
+     <width>1174</width>
      <height>26</height>
     </rect>
    </property>
@@ -360,6 +768,7 @@
     <property name="title">
      <string>Settings</string>
     </property>
+    <addaction name="actionPreferences"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
@@ -392,6 +801,11 @@
   <action name="actionSave_Image">
    <property name="text">
     <string>Save Image</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>
