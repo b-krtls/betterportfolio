@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 # from trading.connections.connection import _SimpleConnection
 from ..connections.connection import _SimpleConnection
 
-
 # logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 logger.setLevel("CRITICAL")  # DEBUG
@@ -40,14 +39,14 @@ class TradingPair:
             "BTC", "ETH", "STX", "EGLD", "ALGO", "AVAX", "HBAR", 
             "USDT", "BUSD", "USDC", "TUSD", "USDP", "DAI", 
         },
-        "forex": {
+        "currencies": {
             "USD", "EUR","GBP", "SEK", "CHF", "KWD", "CNY", "JPY", "KWD", ...
         },
         "stocks": {
             ...
         },
         "commodities": {
-            "BRENT", "NATGAS", ...
+            "BRENT", "NATGAS", "XAU", "XAG", ...
         },
         "indices": {
             "SNP500", "NASDAQ", "CAC40", "NIKKEI225", "DAX40", ...,
