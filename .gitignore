@@ -1,5 +1,6 @@
 # Repo-Specific
-tests/
+# Maybe include tests/
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

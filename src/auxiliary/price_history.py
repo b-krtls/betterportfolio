@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 # logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-logger.setLevel("CRITICAL") #DEBUG
+logger.setLevel("ERROR") #DEBUG
 logger.addHandler(logging.StreamHandler())
 
 class PriceHistory:
@@ -25,10 +25,11 @@ class PriceHistory:
     #     return
 
     def plotter(self):
-        # TODO::
+        # :TODO:
         pass
 
     def convert_time_scale(self):
+        # :FIXME:
         pass
 
 

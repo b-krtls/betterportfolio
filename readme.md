@@ -1,3 +1,6 @@
 # betterportfolio
 
+[x]
+[ ]
+VERIFY
 ## tradeinsight
